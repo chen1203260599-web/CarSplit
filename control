@@ -1,0 +1,10 @@
+Package: com.userspace.carsplit
+Name: CarSplit
+Version: 0.1.0
+Architecture: iphoneos-arm64
+Description: CarPlay 双应用方案（原创实现）。让任意 App 出现在车机应用选择器；CarPlay 连接后自动启动你选好的两个 App（一个留在手机前台、一个上到车机），并预留可拖拽分隔条的分屏容器（v0.2）。
+Maintainer: CarSplit Contributors
+Author: CarSplit Contributors
+Section: Tweaks
+Depends: mobilesubstrate (>= 0.9.5000) | ellekit, firmware (>= 14.0), preferenceloader
+Conflicts: com.sensetechlab.duodash

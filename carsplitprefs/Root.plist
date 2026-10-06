@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>title</key>
+	<string>CarSplit</string>
+	<key>items</key>
+	<array>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>上屏能力</string>
+			<key>footerText</key>
+			<string>开启后，未做 CarPlay 适配的 App 也会出现在车机的应用列表中。</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>label</key>
+			<string>全部应用上屏</string>
+			<key>defaults</key>
+			<string>com.userspace.carsplit</string>
+			<key>key</key>
+			<string>allapps_carplay</string>
+			<key>default</key>
+			<true/>
+			<key>PostNotification</key>
+			<string>com.userspace.carsplit.settings.changed</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>双应用（v0.1 自动启动 / v0.2 并排分屏）</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSLinkCell</string>
+			<key>label</key>
+			<string>App A（手机上运行）</string>
+			<key>detail</key>
+			<string>CarSplitAppPickerController</string>
+			<key>defaults</key>
+			<string>com.userspace.carsplit</string>
+			<key>key</key>
+			<string>appA</string>
+			<key>PostNotification</key>
+			<string>com.userspace.carsplit.settings.changed</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSLinkCell</string>
+			<key>label</key>
+			<string>App B（车机上运行）</string>
+			<key>detail</key>
+			<string>CarSplitAppPickerController</string>
+			<key>defaults</key>
+			<string>com.userspace.carsplit</string>
+			<key>key</key>
+			<string>appB</string>
+			<key>PostNotification</key>
+			<string>com.userspace.carsplit.settings.changed</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>label</key>
+			<string>CarPlay 连接后自动启动</string>
+			<key>defaults</key>
+			<string>com.userspace.carsplit</string>
+			<key>key</key>
+			<string>autostart</string>
+			<key>default</key>
+			<true/>
+			<key>PostNotification</key>
+			<string>com.userspace.carsplit.settings.changed</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>分屏</string>
+			<key>footerText</key>
+			<string>分隔比例预留给 v0.2 分屏容器使用，当前版本暂不影响。</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSliderCell</string>
+			<key>label</key>
+			<string>分隔比例</string>
+			<key>defaults</key>
+			<string>com.userspace.carsplit</string>
+			<key>key</key>
+			<string>splitRatio</string>
+			<key>default</key>
+			<real>0.5</real>
+			<key>min</key>
+			<real>0.3</real>
+			<key>max</key>
+			<real>0.7</real>
+		</dict>
+	</array>
+</dict>
+</plist>
