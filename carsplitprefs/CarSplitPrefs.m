@@ -32,6 +32,7 @@
 - (id)specifiers;
 - (void)setSpecifiers:(id)specifiers;
 - (id)loadSpecifiersFromPlistName:(NSString *)name target:(id)target;
+- (PSSpecifier *)specifier;
 - (void)setSpecifier:(PSSpecifier *)specifier;
 - (PSSpecifier *)specifierForID:(NSString *)identifier;
 - (void)reloadSpecifiers;
