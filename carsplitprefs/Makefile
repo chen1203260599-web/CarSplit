@@ -8,6 +8,7 @@ CarSplitPrefs_FILES = CarSplitPrefs.m
 CarSplitPrefs_INSTALL_PATH = /Library/PreferenceBundles
 CarSplitPrefs_CFLAGS = -fobjc-arc -Wno-arc-performSelector-leaks -Wno-deprecated-declarations
 CarSplitPrefs_FRAMEWORKS = UIKit
-CarSplitPrefs_PRIVATE_FRAMEWORKS = Preferences
+# 不链接 Preferences 私有框架（SDK 不含），符号运行期由 Settings/Preferences 进程解析
+CarSplitPrefs_LDFLAGS = -Wl,-undefined,dynamic_lookup
 
 include $(THEOS_MAKE_PATH)/bundle.mk
