@@ -13,6 +13,7 @@
 #import <UIKit/UIKit.h>
 #import <objc/runtime.h>
 #import <unistd.h>
+#import <notify.h>
 #include "CarSplitInternal.h"
 #include "CarSplitSupport.h"
 #include "CarSplitSplit.h"
@@ -68,33 +69,20 @@ static void CSMaybeAutoStart(void) {
     });
 }
 
-#pragma mark - Darwin 通知回调（设置面板 → SpringBoard）
+#pragma mark - Darwin 通知（libnotify 公开 API：设置面板 notify_post → SpringBoard 接收）
 
-static void CSSplitShowCallback(CFNotificationCenterRef center, void *observer,
-                                CFStringRef name, const void *object, CFDictionaryRef userInfo) {
-    dispatch_async(dispatch_get_main_queue(), ^{
+static void CSRegisterDarwinObservers(void) {
+    uint32_t tokShow = 0, tokHide = 0;
+    notify_register_dispatch("com.userspace.carsplit.split.show", &tokShow,
+                             dispatch_get_main_queue(), ^(int t) {
         CSLog(@"darwin: split.show");
         [CSSplitManager show];
     });
-}
-
-static void CSSplitHideCallback(CFNotificationCenterRef center, void *observer,
-                                CFStringRef name, const void *object, CFDictionaryRef userInfo) {
-    dispatch_async(dispatch_get_main_queue(), ^{
+    notify_register_dispatch("com.userspace.carsplit.split.hide", &tokHide,
+                             dispatch_get_main_queue(), ^(int t) {
         CSLog(@"darwin: split.hide");
         [CSSplitManager hide];
     });
-}
-
-static void CSRegisterDarwinObservers(void) {
-    CFNotificationCenterRef c = CFNotificationCenterGetDarwinCenter();
-    if (!c) return;
-    CFNotificationCenterAddObserver(c, NULL, CSSplitShowCallback,
-                                    CFSTR("com.userspace.carsplit.split.show"), NULL,
-                                    CFNotificationSuspensionBehaviorDeliverImmediately);
-    CFNotificationCenterAddObserver(c, NULL, CSSplitHideCallback,
-                                    CFSTR("com.userspace.carsplit.split.hide"), NULL,
-                                    CFNotificationSuspensionBehaviorDeliverImmediately);
     CSLog(@"darwin observers registered (split.show / split.hide)");
 }
 

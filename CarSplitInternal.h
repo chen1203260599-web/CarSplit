@@ -7,10 +7,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-// 私有 CoreFoundation API：Darwin 通知中心（设置面板 ↔ SpringBoard 桥接）
-// 不在公开头文件/SDK 中存在，weak_import 使链接器放行，符号运行期由 CoreFoundation 提供。
-extern CFNotificationCenterRef CFNotificationCenterGetDarwinCenter(void) __attribute__((weak_import));
-
 @interface LSApplicationProxy : NSObject
 - (NSString *)bundleIdentifier;
 - (NSString *)localizedName;
