@@ -6,6 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#include <notify.h>
 
 #pragma mark - Preferences 最小声明
 
@@ -60,6 +61,15 @@
         _specifiers = [self loadSpecifiersFromPlistName:@"Root" target:self];
     }
     return _specifiers;
+}
+
+// 分屏预览控制按钮 → Darwin 通知 → SpringBoard 中的引擎
+- (void)showSplitPreview {
+    notify_post("com.userspace.carsplit.split.show");
+}
+
+- (void)hideSplitPreview {
+    notify_post("com.userspace.carsplit.split.hide");
 }
 
 @end

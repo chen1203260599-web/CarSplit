@@ -80,9 +80,59 @@
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>label</key>
-			<string>分屏</string>
+			<string>分屏预览（v0.2）</string>
 			<key>footerText</key>
-			<string>分隔比例预留给 v0.2 分屏容器使用，当前版本暂不影响。</string>
+			<string>无需连接车机，可在手机屏上测试双面板容器与分隔条；App 实时画面桥接在 v0.3。</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>label</key>
+			<string>允许分屏预览</string>
+			<key>defaults</key>
+			<string>com.userspace.carsplit</string>
+			<key>key</key>
+			<string>preview_enabled</string>
+			<key>default</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>label</key>
+			<string>立即显示分屏预览</string>
+			<key>action</key>
+			<string>showSplitPreview</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>label</key>
+			<string>关闭分屏预览</string>
+			<key>action</key>
+			<string>hideSplitPreview</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>label</key>
+			<string>CarPlay 连接后自动显示分屏</string>
+			<key>defaults</key>
+			<string>com.userspace.carsplit</string>
+			<key>key</key>
+			<string>split_autostart</string>
+			<key>default</key>
+			<true/>
+			<key>PostNotification</key>
+			<string>com.userspace.carsplit.settings.changed</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>分隔比例</string>
+			<key>footerText</key>
+			<string>拖动分屏预览中的分隔条即可调整，比例自动保存。</string>
 		</dict>
 		<dict>
 			<key>cell</key>

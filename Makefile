@@ -5,7 +5,7 @@ include $(THEOS)/makefiles/common.mk
 
 TWEAK_NAME = CarSplit
 
-CarSplit_FILES = Tweak.x
+CarSplit_FILES = Tweak.x CarSplitSupport.m CarSplitSplit.m
 CarSplit_CFLAGS = -fobjc-arc -Wno-arc-performSelector-leaks -Wno-deprecated-declarations
 CarSplit_FRAMEWORKS = UIKit
 
