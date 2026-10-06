@@ -1,3 +1,5 @@
+TARGET := iphone:clang:latest:14.5
+
 include $(THEOS)/makefiles/common.mk
 
 BUNDLE_NAME = CarSplitPrefs
