@@ -32,13 +32,23 @@ jobs:
           export THEOS="$PWD/theos"
           export PATH="$THEOS/bin:$PATH"
           echo "THEOS=$THEOS" >> "$GITHUB_ENV"
-          # rootless（Dopamine / palera1n 主流越狱）
-          gmake clean package FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless
           mkdir -p dist
-          cp packages/*.deb dist/carsplit-rootless.deb
-          # rootful
-          gmake clean package FINALPACKAGE=1
-          cp packages/*.deb dist/carsplit-rootful.deb
+          # ── rootless（Dopamine / palera1n 主流越狱）──
+          # arm64（A11 及更早设备）
+          gmake clean package FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless ARCHS="arm64"
+          cp packages/*.deb dist/carsplit-arm64.deb
+          # arm64e（A12+ 设备）
+          sed -i '' 's/^Architecture: iphoneos-arm64$/Architecture: iphoneos-arm64e/' control
+          gmake clean package FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless ARCHS="arm64e"
+          cp packages/*.deb dist/carsplit-arm64e.deb
+          git checkout -- control
+          # ── rootful（老式 rootful 越狱）──
+          gmake clean package FINALPACKAGE=1 ARCHS="arm64"
+          cp packages/*.deb dist/carsplit-rootful-arm64.deb
+          sed -i '' 's/^Architecture: iphoneos-arm64$/Architecture: iphoneos-arm64e/' control
+          gmake clean package FINALPACKAGE=1 ARCHS="arm64e"
+          cp packages/*.deb dist/carsplit-rootful-arm64e.deb
+          git checkout -- control
           ls -la dist/
 
       - name: Upload Build Artifact
