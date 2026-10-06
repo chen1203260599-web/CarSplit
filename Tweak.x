@@ -72,7 +72,7 @@ static void CSMaybeAutoStart(void) {
 #pragma mark - Darwin 通知（libnotify 公开 API：设置面板 notify_post → SpringBoard 接收）
 
 static void CSRegisterDarwinObservers(void) {
-    uint32_t tokShow = 0, tokHide = 0;
+    int tokShow = 0, tokHide = 0;
     notify_register_dispatch("com.userspace.carsplit.split.show", &tokShow,
                              dispatch_get_main_queue(), ^(int t) {
         CSLog(@"darwin: split.show");
