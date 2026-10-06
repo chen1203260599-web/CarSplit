@@ -37,22 +37,18 @@ jobs:
           # arm64（A11 及更早设备）
           rm -rf packages
           gmake clean package FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless ARCHS="arm64"
-          cp packages/com.userspace.carsplit_0.2.0_iphoneos-arm64.deb dist/carsplit-arm64.deb
+          python3 tools/repack_deb_arch.py packages/*.deb dist/carsplit-arm64.deb iphoneos-arm64
           # arm64e（A12+ 设备）
-          sed -i '' 's/^Architecture: iphoneos-arm64$/Architecture: iphoneos-arm64e/' control
           rm -rf packages
           gmake clean package FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless ARCHS="arm64e"
-          cp packages/com.userspace.carsplit_0.2.0_iphoneos-arm64e.deb dist/carsplit-arm64e.deb
-          git checkout -- control
+          python3 tools/repack_deb_arch.py packages/*.deb dist/carsplit-arm64e.deb iphoneos-arm64e
           # ── rootful（老式 rootful 越狱）──
           rm -rf packages
           gmake clean package FINALPACKAGE=1 ARCHS="arm64"
-          cp packages/com.userspace.carsplit_0.2.0_iphoneos-arm64.deb dist/carsplit-rootful-arm64.deb
-          sed -i '' 's/^Architecture: iphoneos-arm64$/Architecture: iphoneos-arm64e/' control
+          python3 tools/repack_deb_arch.py packages/*.deb dist/carsplit-rootful-arm64.deb iphoneos-arm64
           rm -rf packages
           gmake clean package FINALPACKAGE=1 ARCHS="arm64e"
-          cp packages/com.userspace.carsplit_0.2.0_iphoneos-arm64e.deb dist/carsplit-rootful-arm64e.deb
-          git checkout -- control
+          python3 tools/repack_deb_arch.py packages/*.deb dist/carsplit-rootful-arm64e.deb iphoneos-arm64e
           ls -la dist/
 
       - name: Upload Build Artifact
