@@ -7,6 +7,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+// 私有 CoreFoundation API：Darwin 通知中心（设置面板 ↔ SpringBoard 桥接）
+// 不在公开头文件中声明，此处手动声明，符号运行期由 CoreFoundation 提供。
+extern CFNotificationCenterRef CFNotificationCenterGetDarwinCenter(void);
+
 @interface LSApplicationProxy : NSObject
 - (NSString *)bundleIdentifier;
 - (NSString *)localizedName;
